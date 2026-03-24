@@ -4,7 +4,7 @@ pub mod assign;
 
 use decl::Declaration;
 use assign::Assignment;
-use crate::asts::ast_helper::Spanned;
+use crate::ast::ast_helper::Spanned;
 
 pub enum StatementE {
     DeclarationE(Spanned<Declaration>),

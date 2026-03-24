@@ -1,5 +1,5 @@
 ﻿
-use crate::asts::{
+use crate::ast::{
     ast_helper::Spanned,
     types::TypeExpr,
     value::ExprE

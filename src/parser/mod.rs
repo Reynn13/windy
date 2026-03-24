@@ -5,9 +5,9 @@ mod stmt_parser;
 mod expr_parser;
 
 use stmt_parser::StmtParser;
-use crate::asts::ast_helper::Spanned;
-use crate::asts::stmt::decl::SymbolId;
-use crate::asts::stmt::StatementE;
+use crate::ast::ast_helper::Spanned;
+use crate::ast::stmt::decl::SymbolId;
+use crate::ast::stmt::StatementE;
 
 struct ParserData<'a> {
     _source: &'a str,

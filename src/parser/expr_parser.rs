@@ -1,7 +1,7 @@
-use crate::asts::ast_helper::Spanned;
-use crate::asts::value::{ExprE};
-use crate::asts::value::binary_expr::{BinOp, BinaryExpr};
-use crate::asts::value::literal::Literal;
+use crate::ast::ast_helper::Spanned;
+use crate::ast::value::{ExprE};
+use crate::ast::value::binary_expr::{BinOp, BinaryExpr};
+use crate::ast::value::literal::Literal;
 use crate::lexer::token::TokenKind;
 use crate::parser::Parser;
 

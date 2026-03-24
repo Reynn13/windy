@@ -1,5 +1,5 @@
-﻿use crate::asts::ast_helper::Spanned;
-use crate::asts::stmt::decl::SymbolId;
+﻿use crate::ast::ast_helper::Spanned;
+use crate::ast::stmt::decl::SymbolId;
 
 
 pub mod literal;
@@ -7,7 +7,7 @@ use literal::Literal;
 
 pub mod binary_expr;
 use binary_expr::BinaryExpr;
-use crate::asts::value::ExprE::{BinaryExprE, IdentifierE, LiteralE};
+use crate::ast::value::ExprE::{BinaryExprE, IdentifierE, LiteralE};
 use crate::lexer::spanloc::SpanLoc;
 
 pub enum ExprE {

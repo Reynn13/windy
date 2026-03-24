@@ -1,7 +1,7 @@
-use crate::asts::ast_helper::Spanned;
-use crate::asts::stmt::assign::Assignment;
-use crate::asts::stmt::decl::Declaration;
-use crate::asts::stmt::StatementE;
+use crate::ast::ast_helper::Spanned;
+use crate::ast::stmt::assign::Assignment;
+use crate::ast::stmt::decl::Declaration;
+use crate::ast::stmt::StatementE;
 use crate::lexer::spanloc::SpanLoc;
 use crate::lexer::token::{Token, TokenKind};
 use crate::parser::Parser;
