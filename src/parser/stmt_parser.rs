@@ -47,6 +47,10 @@ impl StmtParser {
         }
         let mut value = None;
         ExprParser::parse_into(0, &mut value, dispatcher);
+        if value.is_none() {
+            return None;
+        }
+        let value = value.unwrap();
 
         let end = dispatcher.consume(TokenKind::Semicolon);
         if end.is_none() {

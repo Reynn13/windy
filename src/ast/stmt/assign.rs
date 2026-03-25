@@ -2,10 +2,10 @@
 use crate::ast::{
     ast_helper::Spanned,
     stmt::decl::SymbolId,
-    value::ExprE
+    expr::ExprE
 };
 
 pub struct Assignment {
     pub name: Spanned<SymbolId>,
-    pub value: Option<ExprE>
+    pub value: ExprE
 }

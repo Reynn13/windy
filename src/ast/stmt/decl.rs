@@ -2,11 +2,11 @@
 use crate::ast::{
     ast_helper::Spanned,
     types::TypeExpr,
-    value::ExprE
+    expr::ExprE
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct SymbolId(pub u32);
+pub struct SymbolId(pub usize);
 
 pub struct Declaration {
     pub name: Spanned<SymbolId>,

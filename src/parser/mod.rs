@@ -1,4 +1,4 @@
-﻿use std::collections::{HashSet};
+﻿use std::collections::{HashMap};
 use crate::lexer::token::{Token, TokenKind};
 
 mod stmt_parser;
@@ -9,12 +9,16 @@ use crate::ast::ast_helper::Spanned;
 use crate::ast::stmt::decl::SymbolId;
 use crate::ast::stmt::StatementE;
 
+struct ParserInterner<'a> {
+    _map: HashMap<&'a str, SymbolId>,
+    _vec: Vec<&'a str>,
+}
+
 struct ParserData<'a> {
     _source: &'a str,
     _tokens: &'a [Token<'a>],
     _idx: usize,
-    _symbols: HashSet<&'a str>,
-    _id_count: u32
+    _interner: ParserInterner<'a>,
 }
 
 impl<'a> ParserData<'a> {
@@ -23,8 +27,10 @@ impl<'a> ParserData<'a> {
             _source: source,
             _tokens: tokens,
             _idx: 0,
-            _symbols: HashSet::with_capacity(tokens.len() / 3),
-            _id_count: 0
+            _interner: ParserInterner {
+                _map: HashMap::with_capacity(tokens.len() / 3),
+                _vec: Vec::with_capacity(tokens.len() / 3),
+            }
         }
     }
 }
@@ -64,16 +70,17 @@ impl<'a> Parser<'a> {
     }
 
     fn get_id(&mut self, token: &'a Token<'a>) -> Spanned<SymbolId> {
-        if self._data._symbols.contains(token.lexeme) {
+        if let Some(node) = self._data._interner._map.get(token.lexeme) {
             Spanned {
-                node: SymbolId(self._data._id_count),
+                node: *node,
                 loc: token.loc
             }
         } else {
-            self._data._symbols.insert(token.lexeme);
-            self._data._id_count += 1;
+            let id = SymbolId(self._data._interner._vec.len());
+            self._data._interner._map.insert(token.lexeme, id);
+            self._data._interner._vec.push(token.lexeme);
             Spanned {
-                node: SymbolId(self._data._id_count - 1),
+                node: id,
                 loc: token.loc
             }
         }

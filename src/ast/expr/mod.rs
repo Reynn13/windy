@@ -7,7 +7,7 @@ use literal::Literal;
 
 pub mod binary_expr;
 use binary_expr::BinaryExpr;
-use crate::ast::value::ExprE::{BinaryExprE, IdentifierE, LiteralE};
+use crate::ast::expr::ExprE::{BinaryExprE, IdentifierE, LiteralE};
 use crate::lexer::spanloc::SpanLoc;
 
 pub enum ExprE {

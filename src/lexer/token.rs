@@ -2,11 +2,10 @@
     fmt::{Display, Formatter},
     cmp::PartialEq
 };
-
 use crate::lexer::spanloc::SpanLoc;
 
 #[repr(u8)]
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq)]
 pub enum TokenKind {
     // Symbols
     Identifier,
@@ -53,12 +52,6 @@ impl Display for TokenKind {
 }
 
 
-impl PartialEq<TokenKind> for TokenKind {
-    fn eq(&self, other: &TokenKind) -> bool {
-        self == other
-    }
-}
-
 #[derive(Clone)]
 pub struct Token<'a> {
     //lexeme: &'a str,
@@ -83,7 +76,6 @@ impl Display for Token<'_> {
         write!(f, "[{} | {}]", self.kind, self.loc)
     }
 }
-
 
 impl PartialEq<TokenKind> for Token<'_> {
     fn eq(&self, other: &TokenKind) -> bool {
